@@ -63,6 +63,8 @@ export class App extends Component {
                 <h1>Currency App!</h1>
                 <CurrencySelector currency={currency_list}
                                   selectCurrency={this.setCookie}/>
+                <CurrencyTable currency={currency_list}
+                               savedCurrency={selectedData ? selectedData : []}/>
                 <CurrencyControl cleanup={this.removeCookie} update={this.getCurrency}/>
             </div>
         );
