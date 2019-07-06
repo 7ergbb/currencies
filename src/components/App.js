@@ -61,7 +61,9 @@ export class App extends Component {
         return (
             <div className="ui text container currency">
                 <h1>Currency App!</h1>
-
+                <CurrencySelector currency={currency_list}
+                                  selectCurrency={this.setCookie}/>
+                <CurrencyControl cleanup={this.removeCookie} update={this.getCurrency}/>
             </div>
         );
     }
