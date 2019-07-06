@@ -1,5 +1,5 @@
 
-## Instructions
+## Aurrency App instructions
 
 * Clone the repo
 * Run `npm install`
