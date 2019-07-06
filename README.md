@@ -1,5 +1,5 @@
 
-## Aurrency App instructions
+## Currency App instructions
 
 * Clone the repo
 * Run `npm install`
