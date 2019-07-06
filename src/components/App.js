@@ -6,6 +6,8 @@ import {selectCurrency} from '../action/SelectorAction'
 import CurrencyControl from './CurrencyControl'
 import CurrencySelector from './CurrencySelector'
 import CurrencyTable from './CurrencyTable'
+import CurrencyLoader from './CurrencyLoader'
+
 
 
 import '../styles/App.less';
@@ -57,14 +59,13 @@ export class App extends Component {
     render() {
         const {currencyData, selectedData} = this.props
         const currency_list = currencyData ? currencyData : [];
+        const table = <CurrencyTable currency={currency_list} savedCurrency={selectedData ? selectedData : []}/>
 
         return (
             <div className="ui text container currency">
                 <h1>Currency App!</h1>
-                <CurrencySelector currency={currency_list}
-                                  selectCurrency={this.setCookie}/>
-                <CurrencyTable currency={currency_list}
-                               savedCurrency={selectedData ? selectedData : []}/>
+                <CurrencySelector currency={currency_list} selectCurrency={this.setCookie}/>
+                {this.props.currencyDataIsFetching ?<CurrencyLoader/> : table}
                 <CurrencyControl cleanup={this.removeCookie} update={this.getCurrency}/>
             </div>
         );
@@ -75,12 +76,14 @@ App.propTypes = {
     dispatch: PropTypes.func,
     cookie: PropTypes.object,
     currencyData: PropTypes.object,
+    currencyDataIsFetching: PropTypes.any,
     selectedData: PropTypes.object
 };
 
 const mapStateToProps = state => {
     return {
         currencyData: state.allCurrencyState.data,
+        currencyDataIsFetching: state.allCurrencyState.isFetching,
         selectedData: state.selectorState
     }
 };
